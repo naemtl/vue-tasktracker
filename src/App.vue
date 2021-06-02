@@ -28,6 +28,12 @@ export default {
         day: "June 2nd at 11:00am",
         reminder: true,
       },
+      {
+        id: 2,
+        text: "Finish Vue crash course",
+        day: "June 8th at 11:00am",
+        reminder: true,
+      },
     ];
   },
 };
