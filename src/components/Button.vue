@@ -8,7 +8,7 @@
 export default {
   methods: {
     onClick() {
-      console.log("You clicked me");
+      this.$emit("btn-click");
     },
   },
   name: "Button",
