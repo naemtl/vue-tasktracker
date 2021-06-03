@@ -1,7 +1,11 @@
 <template>
   <div class="container">
     <Header title="Task Tracker" />
-    <Tasks :tasks="tasks" />
+    <Tasks
+      @delete-task="deleteTask"
+      @toggle-reminder="toggleReminder"
+      :tasks="tasks"
+    />
   </div>
 </template>
 
@@ -16,11 +20,25 @@ export default {
     Tasks,
   },
   data() {
+    // like initial state
     return {
       tasks: [],
     };
   },
+  methods: {
+    deleteTask(id) {
+      if (confirm("Are you sure?")) {
+        this.tasks = this.tasks.filter((task) => task.id !== id);
+      }
+    },
+    toggleReminder(id) {
+      this.tasks = this.tasks.map((task) =>
+        task.id === id ? { ...task, reminder: !task.reminder } : task
+      );
+    },
+  },
   created() {
+    // lifecycle method
     this.tasks = [
       {
         id: 1,
@@ -33,6 +51,12 @@ export default {
         text: "Finish Vue crash course",
         day: "June 8th at 11:00am",
         reminder: true,
+      },
+      {
+        id: 3,
+        text: "Eat tofu",
+        day: "June 2nd at 11:00pm",
+        reminder: false,
       },
     ];
   },
